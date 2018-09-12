@@ -9,7 +9,10 @@
     "react-redux-loading": "^1.0.1",
     "react-scripts": "1.1.5",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "reselect": "^3.0.1",
+    "semantic-ui-css": "^2.3.3",
+    "semantic-ui-react": "^0.82.3"
   },
   "scripts": {
     "start": "react-scripts start",

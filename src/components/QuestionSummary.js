@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 class QuestionSummary extends Component {
     render () {
         const { question, author } = this.props
-        console.log('question', question)
         return (
             <Segment>
                 <Label attached='top'>{author.name} asks:</Label>

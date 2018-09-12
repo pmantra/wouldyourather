@@ -12,7 +12,6 @@ class App extends Component {
   }
 
   render() {
-    const { questionIds } = this.props
     return (
       <div className="App">
         <LoadingBar />

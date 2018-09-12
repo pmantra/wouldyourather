@@ -2,21 +2,24 @@ import React, { Component } from 'react'
 import { Tab } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import QuestionSummary from './QuestionSummary'
+import { filterArrayWithAnotherArray } from '../utils/helpers'
 
 class QuestionList extends Component {
     render () {
-        const { questions } = this.props
+        const { unansweredQuestions, answeredQuestions } = this.props
         const panes = [
             { menuItem: 'Unanswered Questions',
                 render: () =>
                 <Tab.Pane attached='bottom'>
-                    {questions.map(question => (
+                    {unansweredQuestions.map(question => (
                         <QuestionSummary key={question.id} question={question}/>
                     ))}
                 </Tab.Pane> },
             { menuItem: 'Answered Questions', render: () =>
                 <Tab.Pane attached='bottom'>
-                    List of unanswered questions
+                    {answeredQuestions.map(question => (
+                        <QuestionSummary key={question.id} question={question}/>
+                    ))}
                 </Tab.Pane> },
         ]
         return (
@@ -27,10 +30,15 @@ class QuestionList extends Component {
     }
 }
 
-const mapStateToProps = ({ questions }) => {
-    console.log('questions',questions)
+const mapStateToProps = ({ questions, users, authedUser }) => {
+    const loggedInUser = users[authedUser]
+    const allQuestions = Object.values(questions)
+    const answeredQuestions = filterArrayWithAnotherArray(allQuestions, Object.keys(loggedInUser.answers), true)
+    const unansweredQuestions = filterArrayWithAnotherArray(allQuestions, Object.keys(loggedInUser.answers), false)
+
     return {
-        questions: Object.values(questions)
+        answeredQuestions: answeredQuestions.sort((a,b) => b.timestamp - a.timestamp),
+        unansweredQuestions: unansweredQuestions.sort((a,b) => b.timestamp - a.timestamp)
     }
 }
 

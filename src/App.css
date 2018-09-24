@@ -15,3 +15,15 @@ margin: 2em;
 .question-summary {
   display: block;
 }
+
+.question-segment {
+  margin-left: 10em;
+  margin-right: 10em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.new-question {
+  margin-left: 35%;
+  width: 30em !important;
+}

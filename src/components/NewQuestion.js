@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card, Header, Input, Divider, Button } from 'semantic-ui-react'
+import { handleCreateNewQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
 
@@ -15,17 +16,20 @@ class NewQuestion extends Component {
         this.setState(() => ({
             [name]: value
         }))
-
     }
 
     handleClick = () => {
         const { optionOne, optionTwo } = this.state
+        const { authedUser } = this.props
         this.setState(() => ({
             errorOptionOne: optionOne==='',
             errorOptionTwo: optionTwo==='',
         }),
         () => {
-            console.log('after all that', this.state)
+            if(optionOne !== '' && optionTwo !== '') {
+                const question = { optionOneText: optionOne, optionTwoText: optionTwo, author: authedUser}
+                this.props.onClick(question)
+            }
         })
     }
 
@@ -61,11 +65,16 @@ class NewQuestion extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapStateToProps = ({ authedUser }) => {
     return {
-        //todo
-        onClick: dispatch()
+        authedUser
     }
 }
 
-export default connect()(NewQuestion)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onClick: (question) => dispatch(handleCreateNewQuestion(question))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(NewQuestion)

@@ -9,3 +9,7 @@ export const getInitialData = () => {
         questions,
     }))
 }
+
+export function saveQuestion (question) {
+    return _saveQuestion(question)
+}

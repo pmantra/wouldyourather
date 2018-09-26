@@ -38,6 +38,7 @@ class App extends Component {
                     <MenuBar />
                     <Route path='/' exact component={QuestionList} />
                     <Route path='/add' component={NewQuestion} />
+                    <Route path='/questions/:id' component={UnansweredQuestion} />
                     <Route path='/leaderboard' component={Leaderboard} />
                   </div>
               }

@@ -80,4 +80,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(NewQuestion))
+export default connect(mapStateToProps,mapDispatchToProps)(NewQuestion)

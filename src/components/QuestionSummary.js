@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
 import { Segment, Label, Image, Button, Grid, List, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 class QuestionSummary extends Component {
+
+    toQuestionPage = (e) => {
+        e.preventDefault()
+        const { question } = this.props
+        this.props.history.push(`/questions/${question.id}`)
+    }
+
     render () {
         const { question, author } = this.props
         return (
@@ -17,7 +25,9 @@ class QuestionSummary extends Component {
                             <List relaxed='very'>
                                 <Header>Would you rather?</Header>
                                 <List.Item><span>...{question.optionOne.text.slice(0,20)}...</span></List.Item>
-                                <List.Item><Button fluid basic color='blue'>View Poll</Button></List.Item>
+                                <List.Item>
+                                    <Button fluid basic color='blue' onClick={(e)=> this.toQuestionPage(e)}>View Poll</Button>
+                                </List.Item>
                             </List>
                         </Grid.Column>
                     </Grid>
@@ -33,4 +43,4 @@ const mapStateToProps = ({ users }, { question }) => {
     }
 }
 
-export default connect(mapStateToProps)(QuestionSummary)
+export default withRouter(connect(mapStateToProps)(QuestionSummary))

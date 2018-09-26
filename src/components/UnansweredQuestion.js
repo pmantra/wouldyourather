@@ -57,10 +57,11 @@ class UnansweredQuestion extends Component {
     }
 }
 
-const mapStateToProps = ({ users, questions, loggedInUser }, { questionId }) => {
+const mapStateToProps = ({ users, questions, loggedInUser }, props) => {
+    const { id } = props.match.params
     return {
-        question: questions[questionId],
-        author: users[questions[questionId].author],
+        question: questions[id],
+        author: users[questions[id].author],
         loggedInUser
     }
 }

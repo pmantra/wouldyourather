@@ -13,7 +13,6 @@ export function questions (state = {}, action) {
             }
         case CREATE_NEW_QUESTION:
         const { question } = action
-        console.log('question in reducer', question)
             return {
                 ...state,
                 [question.id]: question

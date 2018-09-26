@@ -10,13 +10,13 @@ class QuestionList extends Component {
         const panes = [
             { menuItem: 'Unanswered Questions',
                 render: () =>
-                <Tab.Pane attached='bottom' grid>
+                <Tab.Pane attached='bottom'>
                     {unansweredQuestions.map(question => (
                         <QuestionSummary key={question.id} question={question}/>
                     ))}
                 </Tab.Pane> },
             { menuItem: 'Answered Questions', render: () =>
-                <Tab.Pane attached='bottom' size='small' grid>
+                <Tab.Pane attached='bottom'>
                     {answeredQuestions.map(question => (
                         <QuestionSummary key={question.id} question={question}/>
                     ))}

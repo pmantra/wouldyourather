@@ -1,7 +1,8 @@
-.App {
-margin: 2em;
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
 }
-
 .question-list {
   margin-left: 15em;
   margin-top: 2em;
@@ -11,19 +12,20 @@ margin: 2em;
 .question-list-header {
   width: 50em;
 }
-
 .question-summary {
   display: block;
 }
-
 .question-segment {
   margin-left: 10em;
   margin-right: 10em;
   margin-top: 2em;
   margin-bottom: 2em;
 }
-
 .new-question {
+  margin-top: 2em;
   margin-left: 35%;
   width: 30em !important;
+}
+.dashboard {
+  margin-top: 1em;
 }

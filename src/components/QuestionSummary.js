@@ -7,7 +7,7 @@ class QuestionSummary extends Component {
         const { question, author } = this.props
         return (
             <div>
-                <Segment fluid>
+                <Segment>
                     <Label attached='top'>{author.name} asks:</Label>
                     <Grid columns='equal' divided>
                         <Grid.Column width={4}>

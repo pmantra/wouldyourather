@@ -2,13 +2,18 @@ import React, { Component } from 'react'
 import { Segment, Label, Image, Button, Grid, List, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { isQuestionAnsweredByAuthor } from '../utils/helpers'
 
 class QuestionSummary extends Component {
 
     toQuestionPage = (e) => {
         e.preventDefault()
-        const { question } = this.props
-        this.props.history.push(`/questions/${question.id}`)
+        const { question, authedUser } = this.props
+        const answered = isQuestionAnsweredByAuthor(question, authedUser)
+        this.props.history.push({
+            pathname: `/questions/${question.id}`,
+            state: { answered }
+        })
     }
 
     render () {
@@ -37,9 +42,10 @@ class QuestionSummary extends Component {
     }
 }
 
-const mapStateToProps = ({ users }, { question }) => {
+const mapStateToProps = ({ users, authedUser }, { question }) => {
     return {
-        author: users[question.author]
+        author: users[question.author],
+        authedUser
     }
 }
 

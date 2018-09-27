@@ -20,12 +20,12 @@ const AnsweredQuestion = (props) => {
                         <List relaxed='very'>
                             <Header>Results:</Header>
                             <List.Item>
-                                <Segment padded='very' color='teal' tertiary>
+                                <Segment padded='very' color='blue' tertiary>
                                     {loggedInUserAnswer==='optionOne' &&
                                     <Label color='yellow' circular size='large' floating>Your Vote</Label>
                                     }
                                     <Header as='h5'
-                                    color={loggedInUserAnswer==='optionOne'?'teal':'grey'}>
+                                    color={loggedInUserAnswer==='optionOne'?'blue':'grey'}>
                                         {`Would you rather \n${optionOne}`}
                                     </Header>
                                 </Segment>
@@ -36,7 +36,7 @@ const AnsweredQuestion = (props) => {
                                     <Label color='yellow' circular size='large' floating>Your Vote</Label>
                                     }
                                     <Header as='h5'
-                                    color={loggedInUserAnswer==='optionTwo'?'teal':'black'}>
+                                    color={loggedInUserAnswer==='optionTwo'?'blue':'black'}>
                                         {`Would you rather \n${optionTwo}`}
                                     </Header>
                                 </Segment>

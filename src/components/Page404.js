@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Message } from 'semantic-ui-react'
 
 const Page404 = (props) => {
@@ -8,8 +7,8 @@ const Page404 = (props) => {
         <Message
         color='blue'
         icon='meh outline'
-        header='Would you rather go home or stare at this page?'
-        content='404 Page Not Found'
+        header='404 error - page not found!'
+        content='Would you rather sink into oblivion or go home?'
         size='massive'/>
         </div>
     )

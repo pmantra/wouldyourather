@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class MenuBar extends Component {
@@ -26,6 +26,8 @@ class MenuBar extends Component {
 
     render () {
         const { activeItem } = this.state
+        const { loggedInUser, avatar } = this.props
+        const greeting = `Welcome ${loggedInUser}`
 
         return (
             <div>
@@ -37,6 +39,8 @@ class MenuBar extends Component {
                     as={Link} to={route.path}/>
                     )}
                     <Menu.Menu position='right'>
+                        <Menu.Item content={greeting}/>
+                        <Image avatar circular src={avatar} inline verticalAlign='bottom'/>
                         <Menu.Item
                         name='logout'
                         active={activeItem === 'logout'}

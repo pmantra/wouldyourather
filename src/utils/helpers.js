@@ -7,3 +7,7 @@ export function filterArrayWithAnotherArray (array, anotherArray, matches) {
 export function isQuestionAnsweredByAuthor (question, author) {
     return question.optionOne.votes.includes(author) || question.optionTwo.votes.includes(author)
 }
+
+export function getUserAvatar (authedUser) {
+    return `https://api.adorable.io/avatars/230/${authedUser}@adorable.io`
+}

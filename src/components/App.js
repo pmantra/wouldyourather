@@ -10,7 +10,7 @@ import AnsweredQuestion from './AnsweredQuestion'
 import NewQuestion from './NewQuestion'
 import QuestionList from './QuestionList'
 import Leaderboard from './Leaderboard'
-import { isQuestionAnsweredByAuthor } from '../utils/helpers'
+import { isQuestionAnsweredByAuthor, getUserAvatar } from '../utils/helpers'
 import Page404 from './Page404'
 
 class App extends Component {
@@ -20,7 +20,12 @@ class App extends Component {
   }
 
   render() {
-    const { questions, authedUser } = this.props
+    const { questions, authedUser, users } = this.props
+    let loggedInUser, avatar
+    if(users[authedUser]) {
+      loggedInUser = users[authedUser].name
+      avatar = getUserAvatar(authedUser)
+    }
 
     return (
       <Router>
@@ -30,7 +35,7 @@ class App extends Component {
               {this.props.loading === true
                 ? null
                 : <div className='container'>
-                    <MenuBar />
+                    <MenuBar loggedInUser={loggedInUser} avatar={avatar}/>
                     <Switch>
                       <Route path='/' exact component={QuestionList} />
                       <Route path='/add' component={NewQuestion} />
@@ -43,7 +48,6 @@ class App extends Component {
                       <Route path='/leaderboard' component={Leaderboard} />
                       <Route component={Page404}/>
                     </Switch>
-
                   </div>
               }
           </div>

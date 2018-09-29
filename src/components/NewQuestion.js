@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card, Header, Input, Divider, Button } from 'semantic-ui-react'
 import { handleCreateNewQuestion } from '../actions/questions'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class NewQuestion extends Component {
 
@@ -38,7 +38,7 @@ class NewQuestion extends Component {
         const { optionOne, optionTwo, validateOptionOne, validateOptionTwo} = this.state
         return (
             <Link to='/add'>
-                <div className='new-question'>
+                <div>
                     <Card fluid>
                         <Card.Content>
                         <Card.Header>Create New Question</Card.Header>

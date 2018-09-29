@@ -24,7 +24,9 @@ class QuestionList extends Component {
         ]
         return (
             <div className='question-list'>
-                <Tab menu={{ color: 'blue', attached: 'top', widths: '2', tabular: false }} panes={panes} />
+                <Tab
+                menu={{ color: 'blue', attached: 'top', widths: '2', tabular: false }}
+                panes={panes} />
             </div>
         )
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Segment, Grid, Image, Label, List, Header, Button, Radio } from 'semantic-ui-react'
+import { handleSaveQuestionAnswer } from '../actions/shared'
 
 class UnansweredQuestion extends Component {
 
@@ -11,15 +12,17 @@ class UnansweredQuestion extends Component {
     handleChange = (e, { value }) => this.setState({ answer: value })
 
     handleSubmit = () => {
-        //todo dispatch
+        const { answer } = this.state
+        const { question, authedUser } = this.props
+        const questionId = question.id
+        this.props.onSubmit(authedUser, questionId, answer)
     }
 
     render () {
-        const { loggedInUser, question, author } = this.props
+        const { question, author } = this.props
         const { answer } = this.state
         return (
             <div>
-                
                 <Segment compact>
                     <Label attached='top'>{author.name} asks:</Label>
                     <Grid columns='equal' divided>
@@ -48,7 +51,9 @@ class UnansweredQuestion extends Component {
                                         />
                                     </List.Item>
                                 <List.Item><span></span></List.Item>
-                                <List.Item><Button fluid basic color='blue'>View Poll</Button></List.Item>
+                                <List.Item>
+                                    <Button fluid basic color='blue' onClick={this.handleSubmit}>Submit Poll</Button>
+                                </List.Item>
                             </List>
                         </Grid.Column>
                     </Grid>
@@ -58,17 +63,20 @@ class UnansweredQuestion extends Component {
     }
 }
 
-const mapStateToProps = ({ users, questions, loggedInUser }, props) => {
+const mapStateToProps = ({ users, questions, authedUser }, props) => {
     const { id } = props.match.params
     return {
         question: questions[id],
         author: users[questions[id].author],
-        loggedInUser
+        authedUser
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    //todo
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSubmit: (authedUser, questionId, answer) =>
+        dispatch(handleSaveQuestionAnswer(authedUser, questionId, answer))
+    }
 }
 
-export default  connect(mapStateToProps)(UnansweredQuestion)
+export default connect(mapStateToProps,mapDispatchToProps)(UnansweredQuestion)

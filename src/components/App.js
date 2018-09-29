@@ -2,15 +2,16 @@ import React, { Component, Fragment } from 'react'
 import '../App.css'
 import { handleInitialData } from '../actions/shared'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import LoadingBar from 'react-redux-loading'
-import Dashboard from './Dashboard'
 import MenuBar from './MenuBar'
 import UnansweredQuestion from './UnansweredQuestion'
 import AnsweredQuestion from './AnsweredQuestion'
 import NewQuestion from './NewQuestion'
 import QuestionList from './QuestionList'
 import Leaderboard from './Leaderboard'
+import { isQuestionAnsweredByAuthor } from '../utils/helpers'
+import Page404 from './Page404'
 
 class App extends Component {
 
@@ -19,27 +20,30 @@ class App extends Component {
   }
 
   render() {
-    const { questions, users, authedUser } = this.props
-    let question, author, loggedInUser
-    if(questions && users && Object.values(questions).length>0) {
-      question = Object.values(questions)[0]
-      author = users[question.author]
-      loggedInUser = users[authedUser]
-    }
+    const { questions, authedUser } = this.props
 
     return (
       <Router>
         <Fragment>
           <LoadingBar />
-          <div className='container'>
+          <div>
               {this.props.loading === true
                 ? null
-                : <div>
+                : <div className='container'>
                     <MenuBar />
-                    <Route path='/' exact component={QuestionList} />
-                    <Route path='/add' component={NewQuestion} />
-                    <Route path='/questions/:id' render={(props) => props.location.state.answered===true ? <AnsweredQuestion {...props}/> : <UnansweredQuestion {...props}/>}/>
-                    <Route path='/leaderboard' component={Leaderboard} />
+                    <Switch>
+                      <Route path='/' exact component={QuestionList} />
+                      <Route path='/add' component={NewQuestion} />
+                      <Route path='/questions/:id'
+                      render={
+                        (props) =>
+                          isQuestionAnsweredByAuthor(questions[props.match.params.id], authedUser)
+                          ? <AnsweredQuestion {...props} />
+                          : <UnansweredQuestion {...props}/>} />
+                      <Route path='/leaderboard' component={Leaderboard} />
+                      <Route component={Page404}/>
+                    </Switch>
+
                   </div>
               }
           </div>

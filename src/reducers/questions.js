@@ -8,8 +8,20 @@ export function questions (state = {}, action) {
                 ...action.questions
             }
         case SAVE_QUESTION_ANSWER:
+            const { authedUser, questionId, answer } = action
+            const answeredQuestion = {
+                [questionId]: {
+                    ...state[questionId],
+                    [answer]: {
+                        ...state[questionId][answer],
+                        votes: state[questionId][answer].votes.concat([authedUser]),
+                    }
+                }
+            }
             return {
-
+                ...state,
+                [questionId]: state[questionId],
+                ...answeredQuestion
             }
         case CREATE_NEW_QUESTION:
         const { question } = action

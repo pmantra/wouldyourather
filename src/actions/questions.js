@@ -12,7 +12,7 @@ export function receiveQuestions (questions) {
     }
 }
 
-function saveQuestionAnswer (authedUser, questionId, answer) {
+export function saveQuestionAnswer (authedUser, questionId, answer) {
     return {
         type: SAVE_QUESTION_ANSWER,
         authedUser,
@@ -34,5 +34,9 @@ export function handleCreateNewQuestion (question) {
         return saveQuestion(question)
         .then((question) => dispatch(createNewQuestion(question)))
         .then(() => dispatch(hideLoading()))
+        .catch((e) => {
+            console.warn('Error in saving question ', e)
+            alert('There was an error saving the poll. Try again ')
+        })
     }
 }

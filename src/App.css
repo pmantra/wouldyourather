@@ -1,4 +1,6 @@
 .container {
+  margin-top: 5em;
+  margin-left: 2em;
   max-width: 1000px;
   margin: 0 auto;
   padding: 10px;
@@ -8,7 +10,6 @@
   margin-top: 2em;
   width: 50em;
 }
-
 .question-list-header {
   width: 50em;
 }
@@ -25,4 +26,8 @@
   margin-top: 2em;
   margin-left: 35%;
   width: 30em !important;
+}
+.page-not-found {
+  margin-top: 10em;
+  margin-left: 5em;
 }

@@ -1,13 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Header } from 'semantic-ui-react'
+import { Message } from 'semantic-ui-react'
 
 const Page404 = (props) => {
     return (
-        <div>
-            <span>404 Page not found!</span>
-            <br/>
-            <Link className='' to='/'/>
+        <div className='page-not-found'>
+        <Message
+        color='blue'
+        icon='meh outline'
+        header='Would you rather go home or stare at this page?'
+        content='404 Page Not Found'
+        size='massive'/>
         </div>
     )
 }

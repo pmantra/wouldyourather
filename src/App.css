@@ -6,9 +6,9 @@
   padding: 10px;
 }
 .question-list {
-  margin-left: 15em;
   margin-top: 2em;
-  width: 50em;
+  margin-left: 25%;
+  width: 45em !important;
 }
 .question-list-header {
   width: 50em;
@@ -30,4 +30,9 @@
 .page-not-found {
   margin-top: 10em;
   margin-left: 5em;
+}
+.leader-board {
+  margin-top: 2em;
+  margin-left: 15%;
+  width: 45em !important;
 }

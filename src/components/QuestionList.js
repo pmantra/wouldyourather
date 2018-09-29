@@ -35,8 +35,8 @@ class QuestionList extends Component {
 const mapStateToProps = ({ questions, users, authedUser }) => {
     const loggedInUser = users[authedUser]
     const allQuestions = Object.values(questions)
-    const answeredQuestions = filterArrayWithAnotherArray(allQuestions, Object.keys(loggedInUser.answers), true)
-    const unansweredQuestions = filterArrayWithAnotherArray(allQuestions, Object.keys(loggedInUser.answers), false)
+    const answeredQuestions = filterArrayWithAnotherArray(allQuestions, Object.keys(loggedInUser.answers), 'id', true)
+    const unansweredQuestions = filterArrayWithAnotherArray(allQuestions, Object.keys(loggedInUser.answers), 'id', false)
 
     return {
         answeredQuestions: answeredQuestions.sort((a,b) => b.timestamp - a.timestamp),

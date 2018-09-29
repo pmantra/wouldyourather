@@ -44,8 +44,11 @@ class App extends Component {
                         (props) =>
                           isQuestionAnsweredByAuthor(questions[props.match.params.id], authedUser)
                           ? <AnsweredQuestion {...props} />
-                          : <UnansweredQuestion {...props}/>} />
-                      <Route path='/leaderboard' component={Leaderboard} />
+                          : <UnansweredQuestion {...props}/>
+                          } />
+                      <Route path='/leaderboard' render={() =>
+                        <Leaderboard users={users} />
+                      } />
                       <Route component={Page404}/>
                     </Switch>
                   </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card, Header, Input, Divider, Button } from 'semantic-ui-react'
-import { handleCreateNewQuestion } from '../actions/questions'
+import { handleCreateNewQuestion } from '../actions/shared'
 import { Link } from 'react-router-dom'
 
 class NewQuestion extends Component {
@@ -30,7 +30,7 @@ class NewQuestion extends Component {
         }))
         if(optionOne !== '' && optionTwo !== '') {
             const question = { optionOneText: optionOne, optionTwoText: optionTwo, author: authedUser}
-            this.props.onClick(question)
+            this.props.onSubmit(question, authedUser)
         }
     }
 
@@ -38,7 +38,7 @@ class NewQuestion extends Component {
         const { optionOne, optionTwo, validateOptionOne, validateOptionTwo} = this.state
         return (
             <Link to='/add'>
-                <div>
+                <div className='new-question'>
                     <Card fluid>
                         <Card.Content>
                         <Card.Header>Create New Question</Card.Header>
@@ -76,7 +76,7 @@ const mapStateToProps = ({ authedUser }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onClick: (question) => dispatch(handleCreateNewQuestion(question))
+        onSubmit: (question, authedUser) => dispatch(handleCreateNewQuestion(question, authedUser))
     }
 }
 

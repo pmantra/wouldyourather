@@ -1,6 +1,6 @@
-import { getInitialData, saveQuestionAnswer as saveQuestionAnswerAPI } from '../utils/api'
-import { receiveUsers, saveUserAnswer } from './users'
-import { receiveQuestions, saveQuestionAnswer } from './questions'
+import { getInitialData, saveQuestionAnswer as saveQuestionAnswerAPI, saveQuestion as saveQuestionAPI } from '../utils/api'
+import { receiveUsers, saveUserAnswer, saveUserQuestion } from './users'
+import { receiveQuestions, saveQuestionAnswer, saveNewQuestion } from './questions'
 import { setAuthedUser } from './authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
@@ -32,6 +32,22 @@ export function handleSaveQuestionAnswer (authedUser, questionId, answer) {
         .catch((e) => {
             console.warn('Error in saving answer ', e)
             alert('There was an error saving vote. Try again ')
+        })
+    }
+}
+
+export function handleCreateNewQuestion (question, authedUser) {
+    return (dispatch) => {
+        dispatch(showLoading())
+        return saveQuestionAPI(question)
+        .then((savedQuestion) => {
+            dispatch(saveNewQuestion(savedQuestion))
+            dispatch(saveUserQuestion(savedQuestion, authedUser))
+        })
+        .then(() => dispatch(hideLoading()))
+        .catch((e) => {
+            console.warn('Error in saving question ', e)
+            alert('There was an error saving the poll. Try again ')
         })
     }
 }

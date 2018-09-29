@@ -21,3 +21,8 @@
   margin-top: 2em;
   margin-bottom: 2em;
 }
+.new-question {
+  margin-top: 2em;
+  margin-left: 35%;
+  width: 30em !important;
+}

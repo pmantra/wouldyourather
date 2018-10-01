@@ -33,6 +33,7 @@ class NewQuestion extends Component {
     handleClick = () => {
         const { optionOne, optionTwo } = this.state
         const { authedUser } = this.props
+        console.log('authedUser-newQuesiton',authedUser)
         this.setState(() => ({
             validateOptionOne: true,
             validateOptionTwo: true

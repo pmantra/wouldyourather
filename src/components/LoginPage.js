@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 import { handleInitialData } from '../actions/shared'
 import { handleLogin } from '../actions/authedUser'
-import { Header, Dropdown, Grid, Button, Segment } from 'semantic-ui-react'
+import { Header, Dropdown, Grid, Button, Segment} from 'semantic-ui-react'
 
 class LoginPage extends Component {
 
     state = {
-        userId: ''
+        userId: '',
+        showAddUser: false
     }
 
     componentDidMount () {
@@ -25,6 +26,13 @@ class LoginPage extends Component {
         e.preventDefault()
         const { userId } = this.state
         this.props.login(userId)
+    }
+
+    toggleNewUser = (e) => {
+        e.preventDefault()
+        this.setState((prevState) => ({
+            showAddUser: !prevState.showAddUser
+        }))
     }
 
     render () {
@@ -52,9 +60,24 @@ class LoginPage extends Component {
                                         <Button primary type='submit' onClick={this.handleClick}>Login</Button>
                                     </Grid.Column>
                                 </Grid.Row>
-                                <Grid.Row/>
+                                {/*
+                                <Grid.Row stretched>
+                                    <Grid.Column width={9}></Grid.Column>
+                                    <Grid.Column width={4}>
+                                        <Label as='a' basic size='small' onClick={this.toggleNewUser}>
+                                            <Icon name='plus circle' />
+                                            add new user
+                                        </Label>
+                                    </Grid.Column>
+                                    <Grid.Column width={3}></Grid.Column>
+                                </Grid.Row>
+                                */}
                             </Grid>
                         </Segment>
+                        <br />
+                        {/*showAddUser===true &&
+                        <NewUser />
+                        */}
                     </div>
                 }
                 </div>

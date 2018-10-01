@@ -17,10 +17,21 @@ export function getLeaderIcon (index) {
         case 0:
             return { icon: 'trophy', color: 'yellow' }
         case 1:
-            return { icon: 'star', color: 'grey' }
+            return { icon: 'star', color: 'orange' }
         case 2:
             return { icon: 'circle', color: 'brown' }
         default:
-            return { icon: '', color: '' }
+            return { icon: '', color: 'grey' }
     }
+}
+
+export function formatNewUser (userId, userName) {
+    const userObj = {
+        id: userId,
+        name: userName,
+        avatarURL: `https://api.adorable.io/avatars/230/${userId}@adorable.io`,
+        answers: {},
+        questions: []
+    }
+    return userObj
 }

@@ -22,8 +22,8 @@ class UnansweredQuestion extends Component {
         const { question, author } = this.props
         const { answer } = this.state
         return (
-            <div>
-                <Segment compact>
+            <div className = 'answered-question'>
+                <Segment>
                     <Label attached='top'>{author.name} asks:</Label>
                     <Grid columns='equal' divided>
                         <Grid.Column width={4}>

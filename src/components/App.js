@@ -12,12 +12,9 @@ import QuestionList from './QuestionList'
 import Leaderboard from './Leaderboard'
 import { isQuestionAnsweredByAuthor, getUserAvatar } from '../utils/helpers'
 import Page404 from './Page404'
+import LoginPage from './LoginPage';
 
 class App extends Component {
-
-  componentDidMount() {
-    this.props.dispatch(handleInitialData())
-  }
 
   render() {
     const { questions, authedUser, users } = this.props
@@ -25,6 +22,12 @@ class App extends Component {
     if(users[authedUser]) {
       loggedInUser = users[authedUser].name
       avatar = getUserAvatar(authedUser)
+    }
+
+    if(authedUser === null) {
+      return (
+        <LoginPage />
+      )
     }
 
     return (
@@ -42,9 +45,12 @@ class App extends Component {
                       <Route path='/questions/:id'
                       render={
                         (props) =>
-                          isQuestionAnsweredByAuthor(questions[props.match.params.id], authedUser)
-                          ? <AnsweredQuestion {...props} />
-                          : <UnansweredQuestion {...props}/>
+                          questions[props.match.params.id]
+                          ?
+                            isQuestionAnsweredByAuthor(questions[props.match.params.id], authedUser)
+                            ? <AnsweredQuestion {...props} />
+                            : <UnansweredQuestion {...props}/>
+                          : <Page404 />
                           } />
                       <Route path='/leaderboard' render={() =>
                         <Leaderboard users={users} />
@@ -69,4 +75,10 @@ const mapStateToProps = ({ authedUser, questions, users }) => {
   }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch,ownProps) => {
+  return {
+    loadData: () => dispatch(handleInitialData())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App)

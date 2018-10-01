@@ -12,13 +12,15 @@ export function getUserAvatar (authedUser) {
     return `https://api.adorable.io/avatars/230/${authedUser}@adorable.io`
 }
 
-/* export function getStats (user) {
-    const questions = user.questions
-    const answers = Object.keys(user.answers)
-    console.log('questions', questions)
-    console.log('answers', answers)
-    const asked = filterArrayWithAnotherArray (questions, answers, undefined, true)
-    console.group('username', user.name)
-    console.log('asked', asked.length)
-    console.groupEnd()
-} */
+export function getLeaderIcon (index) {
+    switch(index) {
+        case 0:
+            return { icon: 'trophy', color: 'yellow' }
+        case 1:
+            return { icon: 'star', color: 'grey' }
+        case 2:
+            return { icon: 'circle', color: 'brown' }
+        default:
+            return { icon: '', color: '' }
+    }
+}

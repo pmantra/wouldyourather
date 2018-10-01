@@ -7,7 +7,7 @@
 }
 .question-list {
   margin-top: 2em;
-  margin-left: 25%;
+  margin-left: 15%;
   width: 45em !important;
 }
 .question-list-header {
@@ -24,8 +24,8 @@
 }
 .new-question {
   margin-top: 2em;
-  margin-left: 35%;
-  width: 30em !important;
+  margin-left: 15%;
+  width: 40em !important;
 }
 .page-not-found {
   margin-top: 10em;
@@ -35,4 +35,17 @@
   margin-top: 2em;
   margin-left: 15%;
   width: 45em !important;
+}
+.answered-question {
+  margin-top: 2em;
+  margin-left: 15%;
+  width: 45em !important;
+}
+.login {
+  margin-top: 2em;
+  margin-left: 15%;
+  width: 45em !important;
+}
+.question-summary {
+  margin-bottom: 20px;
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Menu, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { handleLogout } from '../actions/authedUser'
 
 class MenuBar extends Component {
 
@@ -21,7 +23,9 @@ class MenuBar extends Component {
     }
 
     handleItemClick = (e, { name }) => {
-        this.setState({ activeItem: name })
+        name === 'logout'
+        ? this.props.logout()
+        : this.setState({ activeItem: name })
     }
 
     render () {
@@ -44,6 +48,7 @@ class MenuBar extends Component {
                         <Menu.Item
                         name='logout'
                         active={activeItem === 'logout'}
+                        as={Link} to='/'
                         onClick={this.handleItemClick}/>
                     </Menu.Menu>
                 </Menu>
@@ -52,4 +57,10 @@ class MenuBar extends Component {
     }
 }
 
-export default MenuBar
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        logout: () => dispatch(handleLogout())
+    }
+}
+
+export default connect(undefined,mapDispatchToProps)(MenuBar)

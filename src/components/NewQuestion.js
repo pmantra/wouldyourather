@@ -3,14 +3,23 @@ import { connect } from 'react-redux'
 import { Card, Header, Input, Divider, Button } from 'semantic-ui-react'
 import { handleCreateNewQuestion } from '../actions/shared'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
 class NewQuestion extends Component {
 
-    state = {
-        optionOne: '',
-        optionTwo: '',
-        validateOptionOne: false,
-        validateOptionTwo: false
+    getInitState = () => {
+        return {
+            optionOne: '',
+            optionTwo: '',
+            validateOptionOne: false,
+            validateOptionTwo: false
+        }
+    }
+
+    state = this.getInitState()
+
+    clearForm = () => {
+        this.setState(() => this.getInitState())
     }
 
     handleInput = (e, { name, value }) => {
@@ -31,6 +40,8 @@ class NewQuestion extends Component {
         if(optionOne !== '' && optionTwo !== '') {
             const question = { optionOneText: optionOne, optionTwoText: optionTwo, author: authedUser}
             this.props.onSubmit(question, authedUser)
+            toast.success("New question has been posted!")
+            this.clearForm()
         }
     }
 
@@ -62,6 +73,7 @@ class NewQuestion extends Component {
                             onClick={this.handleClick}/>
                         </Card.Content>
                     </Card>
+                    <ToastContainer position="bottom-right"/>
                 </div>
             </Link>
         )

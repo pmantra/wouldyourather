@@ -7,16 +7,18 @@ class QuestionSummary extends Component {
 
     toQuestionPage = (e) => {
         e.preventDefault()
-        const { question } = this.props
-        this.props.history.push({
-            pathname: `/questions/${question.id}`
-        })
+        const { authedUser, question } = this.props
+        if(authedUser !== null) {
+            this.props.history.push({
+                pathname: `/questions/${question.id}`
+            })
+        }
     }
 
     render () {
         const { question, author } = this.props
         return (
-            <div>
+            <div className='question-summary'>
                 <Segment>
                     <Label attached='top'>{author.name} asks:</Label>
                     <Grid columns='equal' divided>

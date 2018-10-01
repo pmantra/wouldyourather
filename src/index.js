@@ -7,6 +7,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
 import middleware from './middleware'
+import 'react-toastify/dist/ReactToastify.css'
 
 const store = createStore(rootReducer, middleware)
 

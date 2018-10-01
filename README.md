@@ -43,7 +43,7 @@ Clone the repository, build the app using npm by running the following command
 ```
 npm install
 ```
-Start the app using npm or yarn
-```yarn start``` or ```npm start
+Start the app using npm or yarn and run
+```yarn start``` or ```npm start```
 
 cheers!

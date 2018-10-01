@@ -37,3 +37,13 @@ State management is done using Redux
 ###Dev Notes
 * App doesn't use password based authentication, user can impersonate by simply selecting the username from the dropdown
 * A feature to create new users in the app is toggled off as of now as the backend supporting this feature is required
+
+##Install Instructions
+Clone the repository, build the app using npm by running the following command
+```
+npm install
+```
+Start the app using npm or yarn
+```yarn start``` or ```npm start
+
+cheers!
